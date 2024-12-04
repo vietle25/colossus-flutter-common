@@ -4,7 +4,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../main.dart';
+import '../boot_flutter_common.dart';
 
 CommonUtils get commonUtils => getIt.get<CommonUtils>();
 
@@ -27,7 +27,8 @@ class CommonUtils {
 
     if (Platform.isIOS) {
       var iosDeviceInfo = await deviceInfo.iosInfo;
-      uniqueDeviceId = '${iosDeviceInfo.name}:${iosDeviceInfo.identifierForVendor}';
+      uniqueDeviceId =
+          '${iosDeviceInfo.name}:${iosDeviceInfo.identifierForVendor}';
     } else if (Platform.isAndroid) {
       var androidDeviceInfo = await deviceInfo.androidInfo;
       uniqueDeviceId = '${androidDeviceInfo.brand}:${androidDeviceInfo.id}';

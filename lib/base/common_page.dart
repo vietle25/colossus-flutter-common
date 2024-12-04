@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_common/utils/log/log_mixin.dart';
+import 'package:boot_flutter_common/utils/log/log_mixin.dart';
 
 import '../services/navigation/common_navigator_observer.dart';
 
