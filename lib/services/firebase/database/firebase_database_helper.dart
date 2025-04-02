@@ -1,34 +1,56 @@
-import 'package:firebase_database/firebase_database.dart';
-
-// Abstract class defining the contract for database operations
-abstract class DatabaseHelper {
-  /// Creates or updates an item in the database.
+abstract class FirebaseDatabaseHelper {
+  /// Creates a new item in the specified collection.
   ///
-  /// Parameters:
-  /// - [itemId]: The unique identifier for the item.
-  /// - [itemData]: A map containing the item's data.
-  Future<void> createOrUpdateItem(String itemId, Map<String, dynamic> itemData);
+  /// [collection] is the name of the collection.
+  /// [item] is the data of the item to be created.
+  Future<void> createItem(
+    String collection, {
+    required Map<String, dynamic> item,
+  });
 
-  /// Deletes an item from the database.
+  /// Updates an existing item in the specified collection.
   ///
-  /// Parameters:
-  /// - [itemId]: The unique identifier for the item to be deleted.
-  Future<void> deleteItem(String itemId);
+  /// [collection] is the name of the collection.
+  /// [id] is the ID of the item to be updated.
+  /// [item] is the new data for the item.
+  Future<void> updateItem(
+    String collection, {
+    required String id,
+    required Map<String, dynamic> item,
+  });
 
-  /// Gets a reference to the list of items in the database.
+  /// Deletes an item from the specified collection.
   ///
-  /// Returns: A [DatabaseReference] to the items node.
-  DatabaseReference getItemList();
+  /// [collection] is the name of the collection.
+  /// [id] is the ID of the item to be deleted.
+  Future<void> deleteItem(String collection, {required String id});
 
-  /// Inserts a list of items into the database.
+  /// Adds a new item to the specified collection.
   ///
-  /// Parameters:
-  /// - [items]: A map of item IDs to item data.
-  Future<void> insertItemList(Map<String, Map<String, dynamic>> items);
+  /// [collection] is the name of the collection.
+  /// [item] is the data of the item to be added.
+  Future<void> addItemToList(
+    String collection, {
+    required Map<String, dynamic> item,
+  });
 
-  /// Removes an item from the list in the database.
+  /// Removes an item from the specified collection.
   ///
-  /// Parameters:
-  /// - [itemId]: The unique identifier for the item to be removed.
-  Future<void> removeItemFromList(String itemId);
+  /// [collection] is the name of the collection.
+  /// [id] is the ID of the item to be removed.
+  Future<void> removeItemFromList(
+    String collection, {
+    required String id,
+  });
+
+  /// Retrieves a list of items from the specified collection.
+  ///
+  /// [collection] is the name of the collection.
+  Future<List<Map<String, dynamic>>> getList(String collection);
+
+  /// Retrieves a single item from the specified collection.
+  ///
+  /// [collection] is the name of the collection.
+  /// [id] is the ID of the item to be retrieved.
+  Future<Map<String, dynamic>?> getItem(String collection, String id);
 }

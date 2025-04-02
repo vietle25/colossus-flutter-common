@@ -1,26 +1,29 @@
-import 'package:boot_flutter_common/utils/log/log_mixin.dart';
+import 'package:colossus_flutter_common/utils/log/log_mixin.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/log/log_config.dart';
 
 class CommonNavigatorObserver extends RouteObserver<ModalRoute<Object?>>
     with LogMixin {
   Route<dynamic>? topStackRoute;
 
-  // Private constructor
   CommonNavigatorObserver._internal();
 
-  // Singleton instance
   static final CommonNavigatorObserver _instance =
       CommonNavigatorObserver._internal();
 
-  // Factory constructor to return the singleton instance
   factory CommonNavigatorObserver() {
     return _instance;
   }
 
+  static const _enableLog = LogConfig.enableNavigatorObserverLog;
+
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    logD(
-        'Route pushed: ${route.settings} -- previous route: ${previousRoute?.settings ?? ''}');
+    if (_enableLog) {
+      logD(
+          'Route pushed: ${route.settings} -- previous route: ${previousRoute?.settings ?? ''}');
+    }
 
     topStackRoute = route;
 
@@ -29,8 +32,10 @@ class CommonNavigatorObserver extends RouteObserver<ModalRoute<Object?>>
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    logD(
-        'Route popped: ${route.settings} -- previous route: ${previousRoute?.settings ?? ''}');
+    if (_enableLog) {
+      logD(
+          'Route popped: ${route.settings} -- previous route: ${previousRoute?.settings ?? ''}');
+    }
 
     topStackRoute = previousRoute;
 

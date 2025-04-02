@@ -1,4 +1,4 @@
-import 'package:boot_flutter_common/services/local_storage/secure_storage/secure_storage_helper.dart';
+import 'package:colossus_flutter_common/services/local_storage/secure_storage/secure_storage_helper.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecureStorageHelperImpl implements SecureStorageHelper {

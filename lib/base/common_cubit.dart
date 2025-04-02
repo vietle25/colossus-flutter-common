@@ -1,4 +1,4 @@
-import 'package:boot_flutter_common/utils/log/log_mixin.dart';
+import 'package:colossus_flutter_common/utils/log/log_mixin.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 abstract class CommonCubit<State> extends Cubit<State> with LogMixin {
